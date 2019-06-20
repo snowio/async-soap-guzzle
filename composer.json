@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "snowio/php-async-soap": "~2.0",
-        "snowio/soap-http-binding": "~1.0.0",
+        "snowio/php-async-soap": "dev-feature/change-namespace",
+        "snowio/soap-http-binding": "dev-feature/change-namespace",
         "guzzlehttp/guzzle": "^6.1"
     },
     "require-dev": {
