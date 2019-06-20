@@ -1,7 +1,7 @@
 <?php
 
 use GuzzleHttp\Client;
-use Meng\AsyncSoap\Guzzle\Factory;
+use SnowIO\AsyncSoap\Guzzle\Factory;
 
 class SoapClientTest extends PHPUnit_Framework_TestCase
 {

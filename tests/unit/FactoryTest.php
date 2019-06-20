@@ -1,6 +1,6 @@
 <?php
 
-namespace Meng\AsyncSoap\Guzzle;
+namespace SnowIO\AsyncSoap\Guzzle;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;

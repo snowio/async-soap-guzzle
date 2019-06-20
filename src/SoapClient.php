@@ -1,9 +1,9 @@
 <?php
 
-namespace Meng\AsyncSoap\Guzzle;
+namespace SnowIO\AsyncSoap\Guzzle;
 
-use Meng\AsyncSoap\SoapClientInterface;
-use Meng\Soap\HttpBinding\HttpBinding;
+use SnowIO\AsyncSoap\SoapClientInterface;
+use SnowIO\Soap\HttpBinding\HttpBinding;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;

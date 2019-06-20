@@ -1,13 +1,13 @@
 <?php
 
-namespace Meng\AsyncSoap\Guzzle;
+namespace SnowIO\AsyncSoap\Guzzle;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Promise\FulfilledPromise;
-use Meng\AsyncSoap\SoapClientInterface;
-use Meng\Soap\HttpBinding\HttpBinding;
-use Meng\Soap\HttpBinding\RequestBuilder;
-use Meng\Soap\Interpreter;
+use SnowIO\AsyncSoap\SoapClientInterface;
+use SnowIO\Soap\HttpBinding\HttpBinding;
+use SnowIO\Soap\HttpBinding\RequestBuilder;
+use SnowIO\Soap\Interpreter;
 use Psr\Http\Message\ResponseInterface;
 
 class Factory

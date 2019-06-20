@@ -1,6 +1,6 @@
 <?php
 
-namespace Meng\AsyncSoap\Guzzle;
+namespace SnowIO\AsyncSoap\Guzzle;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -12,8 +12,8 @@ use GuzzleHttp\Promise\RejectedPromise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
-use Meng\Soap\HttpBinding\HttpBinding;
-use Meng\Soap\HttpBinding\RequestException;
+use SnowIO\Soap\HttpBinding\HttpBinding;
+use SnowIO\Soap\HttpBinding\RequestException;
 
 class SoapClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,7 +56,7 @@ class SoapClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Meng\Soap\HttpBinding\RequestException
+     * @expectedException \SnowIO\Soap\HttpBinding\RequestException
      */
     public function magicCallHttpBindingFailed()
     {
