@@ -24,5 +24,7 @@
     },
     "autoload": {
         "psr-4": {"Meng\\AsyncSoap\\Guzzle\\": "src/"}
-    }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
