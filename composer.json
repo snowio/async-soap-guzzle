@@ -11,7 +11,9 @@
     ],
     "repositories": [
         {"type": "composer", "url": "https://repo.packagist.com/snowio/"},
-        {"packagist.org": false}
+        {"packagist.org": false},
+        {"type":  "git", "url": "https://github.com/snowio/soap-http-binding.git"},
+        {"type":  "git", "url": "https://github.com/snowio/php-async-soap.git"}
     ],
     "require": {
         "php": ">=5.5.0",
