@@ -63,9 +63,17 @@ class SoapClient implements SoapClientInterface
     private function tryLog(ResponseInterface $response, array $options = null)
     {
         if ($options && isset($options['logger']) && $options['logger'] instanceof LoggerInterface) {
+            $responseContents = $response->getBody()->__toString();
+
             $options['logger']->debug("Raw SOAP Response Received", [
-                'response' => $response->getBody()->__toString()
+                'response' => $responseContents
             ]);
+
+            if (empty($responseContents)) {
+                $options['logger']->warning("Empty response has been detected", [
+                    'response' => $responseContents
+                ]);
+            }
         }
     }
 
