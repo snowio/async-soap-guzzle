@@ -8,6 +8,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 class SoapClient implements SoapClientInterface
 {
@@ -42,10 +43,12 @@ class SoapClient implements SoapClientInterface
 
                 try {
                     $response = (yield $this->client->sendAsync($request, $requestOptions));
+                    $this->tryLog($response, $options);
                     yield $this->interpretResponse($httpBinding, $response, $name, $outputHeaders);
                 } catch (RequestException $exception) {
                     if ($exception->hasResponse()) {
                         $response = $exception->getResponse();
+                        $this->tryLog($response, $options);
                         yield $this->interpretResponse($httpBinding, $response, $name, $outputHeaders);
                     } else {
                         throw $exception;
@@ -55,6 +58,15 @@ class SoapClient implements SoapClientInterface
                 }
             }
         );
+    }
+
+    private function tryLog(ResponseInterface $response, array $options = null)
+    {
+        if ($options && isset($options['logger']) && $options['logger'] instanceof LoggerInterface) {
+            $options['logger']->debug("Raw SOAP Response Received", [
+                'response' => $response->getBody()->__toString()
+            ]);
+        }
     }
 
     private function interpretResponse(HttpBinding $httpBinding, ResponseInterface $response, $name, &$outputHeaders)
