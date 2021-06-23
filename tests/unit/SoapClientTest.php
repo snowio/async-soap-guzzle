@@ -14,6 +14,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Meng\Soap\HttpBinding\HttpBinding;
 use Meng\Soap\HttpBinding\RequestException;
+use Psr\Http\Message\ResponseInterface;
 
 class SoapClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -231,10 +232,14 @@ class SoapClientTest extends \PHPUnit_Framework_TestCase
                 'someSoapMethod', [['some-key' => 'some-value']]
             );
 
-        $response = new Response('200', [], 'body');
-        $this->httpBindingMock->method('response')->willReturn(
-            'SoapResult'
-        );
+        $response = new Response('200', [], $body = 'body');
+        $this->httpBindingMock->method('response')->willReturnCallback(function (
+            ResponseInterface $response,
+            $name,
+            &$outputHeaders
+        ) {
+            return $response->getBody()->__toString();
+        });
 
         $this->handlerMock->append($response);
         $this->handlerMock->append($response);
@@ -246,5 +251,9 @@ class SoapClientTest extends \PHPUnit_Framework_TestCase
         $asyncResult = $client->callAsync('someSoapMethod', [['some-key' => 'some-value']])->wait();
         $this->assertEquals($magicResult, $asyncResult);
         $this->assertEquals($syncResult, $asyncResult);
+
+        $this->assertEquals($body, $magicResult);
+        $this->assertEquals($body, $asyncResult);
+        $this->assertEquals($body, $syncResult);
     }
 }
